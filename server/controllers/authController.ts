@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs'
-import { request, Request,response,Response } from 'express'
+import { Request,Response } from 'express'
 import client from '../db/db.js'
 import { userLoginValidation, userSignupValidation } from '../zod/userSchema.js'
 import { generateAndSetCookie } from '../utils/generateAndSetCookie.js'

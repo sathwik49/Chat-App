@@ -25,7 +25,7 @@ export const validateUser = async (req:Request,res:Response,next:NextFunction)=>
         //console.log(token);
         
         if(!token){
-            return res.status(403).json({message:"UnAuthorized",success:false})
+            return res.status(403).json({message:"UnAuthorized.Please try to Login/Signup first.",success:false})
         }
         const decodedUser = jwt.verify(token,process.env.JWT_SECRET!) as DecodedToken
         const user = await client.user.findFirst({

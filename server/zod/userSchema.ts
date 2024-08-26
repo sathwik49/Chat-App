@@ -1,9 +1,9 @@
 import zod from 'zod'
 
 const userSignupSchema =  zod.object({
-    "username":zod.string(),
-    "fullName":zod.string(),
-    "password":zod.string().min(5,{message:"Minimum 5 characters required"}),
+    "username":zod.string().min(1,{message:"Username required"}),
+    "fullName":zod.string().min(1,{message:"Fullname required"}),
+    "password":zod.string().min(5,{message:"Minimum 5 characters required for Password"}),
     "email":zod.string().email({message:"Invalid Email"}),
     "gender":zod.enum(['male','female'],{message:"Select Gender properly"})
 })
@@ -13,7 +13,7 @@ export const userSignupValidation = (body:object)=>{
     if(!inputValidation.success){
         let errMsg="";
         (inputValidation.error.errors).forEach(err => {
-            errMsg +=`${err.path}:${err.message} , `
+            errMsg +=`${err.message}, `
         });
         return {
             message:errMsg,
